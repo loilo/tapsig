@@ -188,7 +188,7 @@ const $ = tapsig.tap(jQuery, {
 
 $.foo // "bar", as defined in the injection object
 $.baz // "no such property 'baz'", returned by the ALL method
-$.ajax // "no such property 'baz'", returned by the ALL method
+$.ajax // "no such property 'ajax'", returned by the ALL method
 ```
 
 > **Warning:** Be **very careful** when using the `ALL` method. It will be called to answer requests for JavaScript-Builtins like `prototype`, literally *any* property. This can lead to unexpected results, so you should always be aware and possibly quite restrictive about which properties you answer:
