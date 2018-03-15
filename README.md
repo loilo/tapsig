@@ -216,4 +216,4 @@ The Node.js version of Tapsig uses the [debug](https://npmjs.com/package/debug) 
 For the sake of bundle size, the browser build uses just a simple `console.log()`. As opposed to the Node.js logs it has to be enabled manually by setting the `verbose` parameter (3rd parameter of `tapsig.tap()`) to `true`.
 
 ## "Tapsig"?
-It's German (roughly pronounced like `tub-zig`) and kind of means a kind of "clumsy", as you can observe it with kittens or toddlers who practice walking. 🐾
+It's hard these days to find a good module name that's available on npm. I wanted some playful name related to "tap" and came up with a word in my mother tongue: "tapsig" (roughly pronounced like "tub-zig") is German for "clumsy", the kind you can observe when kittens or toddlers practice their first steps. 🐾
