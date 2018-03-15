@@ -6,7 +6,7 @@
 
 ![Tapsig](tapsig.png)
 
-This tiny library (0.8kb minified & gzipped) tacks custom extensions onto existing JavaScript functions and objects. That makes it incredibly easy to supplement existing JavaScript libraries with custom methods without touching its original code.
+This tiny library (0.7kb minified & gzipped) tacks custom extensions onto existing JavaScript functions and objects. That makes it incredibly easy to supplement existing JavaScript libraries with custom methods without touching its original code.
 
 It works by wrapping the target in a [Proxy](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Proxy). The Proxy sticks to the tapped library by attaching itself to properties accessed or methods called on it.
 
