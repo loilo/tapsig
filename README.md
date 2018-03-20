@@ -6,7 +6,7 @@
 
 ![Tapsig](tapsig.png)
 
-This tiny library (0.7kb minified & gzipped) tacks custom extensions onto existing JavaScript functions and objects. That makes it incredibly easy to supplement existing JavaScript libraries with custom methods without touching its original code.
+This tiny library (0.8kb minified & gzipped) tacks custom extensions onto existing JavaScript functions and objects. That makes it incredibly easy to supplement existing JavaScript libraries with custom methods without touching its original code.
 
 It works by wrapping the target in a [Proxy](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Proxy). The Proxy sticks to the tapped library by attaching itself to properties accessed or methods called on it.
 
@@ -27,7 +27,7 @@ This package works in Node.js and in the browser. Note however that the browser 
     * [`MISSING`](#missing)
     * [`ALL`](#all)
   * [Checking if an Object is Tapped](#checking-if-an-object-is-tapped)
-  * [Mask Values](#mask-values)
+  * [Masking Values](#masking-values)
   * [Debugging](#debugging)
 * ["Tapsig"?](#tapsig-1)
 
@@ -211,7 +211,7 @@ $.ajax // "no such property 'ajax'", returned by the ALL method
 ### Checking if an Object is Tapped
 You can check if an object is tapped by running `tapsig.isTapped(object)`.
 
-### Mask Values
+### Masking Values
 By default, all injected properties and all results returned from injected functions will be tapped.
 
 If you want to prevent such a value to be tapped, you can use the `mask()` method:
