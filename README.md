@@ -27,6 +27,7 @@ This package works in Node.js and in the browser. Note however that the browser 
     * [`MISSING`](#missing)
     * [`ALL`](#all)
   * [Checking if an Object is Tapped](#checking-if-an-object-is-tapped)
+  * [Mask Values](#mask-values)
   * [Debugging](#debugging)
 * ["Tapsig"?](#tapsig-1)
 
@@ -210,7 +211,7 @@ $.ajax // "no such property 'ajax'", returned by the ALL method
 ### Checking if an Object is Tapped
 You can check if an object is tapped by running `tapsig.isTapped(object)`.
 
-### Mask values
+### Mask Values
 By default, all injected properties and all results returned from injected functions will be tapped.
 
 If you want to prevent such a value to be tapped, you can use the `mask()` method:
