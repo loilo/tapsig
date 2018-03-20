@@ -1,4 +1,4 @@
-const { tap, untap, isTapped, ALL, MISSING } = require('../dist/node.cjs')
+const { tap, untap, mask, isTapped, ALL, MISSING } = require('../dist/node.cjs')
 
 const api = {
   foo () {
@@ -117,4 +117,13 @@ test('taps injected results', () => {
   })
 
   expect(isTapped(tappedApi.bar)).toBe(true)
+})
+
+test('handles masked results', () => {
+  const tappedApi = tap(api, {
+    bar: mask([])
+  })
+
+  expect(isTapped(tappedApi.bar)).toBe(false)
+  expect(tappedApi.bar).toEqual([])
 })

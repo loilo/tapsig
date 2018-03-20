@@ -40,6 +40,11 @@ function getInjectedProperty (target, name, injectObj) {
  * @return {any}              The tapped object or its wrapping Proxy
  */
 function tapObject (source, inject, context, verbose) {
+  // Handle masked values
+  if (source instanceof Masked) {
+    return source.value
+  }
+
   // Promises are a very special snowflake
   if (source instanceof Promise) {
     if (isTapped(source)) return source
@@ -119,7 +124,9 @@ function tapObject (source, inject, context, verbose) {
     apply (target, thisArg, args) {
       log(verbose, 'call %o with %o as %o', target, args, thisArg)
 
-      return tapObject(Reflect.apply(target, thisArg, args), inject, null, verbose)
+      const result = Reflect.apply(target, thisArg, args)
+
+      return tapObject(result, inject, null, verbose)
     }
   })
 
@@ -150,6 +157,23 @@ export function untap (proxy) {
   } else {
     return proxy
   }
+}
+
+/**
+ * Creates a masked value. Necessary to return non-tapped values from functions.
+ * @param {any} value  The value to be masked
+ */
+function Masked (value) {
+  this.value = value
+}
+
+/**
+ * Masks a value to make it non-tapped
+ * @param  {any} value  The value to be masked
+ * @return {Masked}     The masked value
+ */
+export function mask (value) {
+  return new Masked(value)
 }
 
 /**

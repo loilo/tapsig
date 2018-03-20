@@ -1,9 +1,13 @@
-const { tap, untap, isTapped } = require('../dist/node.cjs')
+const { tap, untap, mask, isTapped } = require('../dist/node.cjs')
 
 const symbol = Symbol('Symbol')
 
 function returnsArg (arg) {
   return arg
+}
+
+function returnsMaskedArg (arg) {
+  return mask(arg)
 }
 
 class ClassApi {}
@@ -56,6 +60,18 @@ test('taps functions\' non-primitive return values', () => {
   const tappedFn = tap(returnsArg)
   expect(isTapped(tappedFn({}))).toBe(true)
   expect(isTapped(tappedFn(function () {}))).toBe(true)
+})
+
+test('does not tap functions\' masked non-primitive return values', () => {
+  const tappedFn = tap(returnsMaskedArg)
+
+  const obj = {}
+  expect(isTapped(tappedFn(obj))).toBe(false)
+  expect(tappedFn(obj)).toBe(obj)
+
+  const fn = function () {}
+  expect(isTapped(tappedFn(fn))).toBe(false)
+  expect(tappedFn(fn)).toBe(fn)
 })
 
 test('returns correct values from tapped functions', () => {

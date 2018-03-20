@@ -210,6 +210,22 @@ $.ajax // "no such property 'ajax'", returned by the ALL method
 ### Checking if an Object is Tapped
 You can check if an object is tapped by running `tapsig.isTapped(object)`.
 
+### Mask values
+By default, all injected properties and all results returned from injected functions will be tapped.
+
+If you want to prevent such a value to be tapped, you can use the `mask()` method:
+
+```javascript
+const $ = tapsig.tap(jQuery, {
+  originalJQuery () {
+    // Untap the proxy, then mask it
+    return tapsig.mask(tapsig.untap(this))
+  }
+})
+
+// $.originalJQuery() === jQuery
+```
+
 ### Tap Promises
 There are [edge cases](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Called_on_incompatible_type) where wrapping an object in a Proxy does not work. Promises are one of those.
 Therefore, `tapsig` will not tap Promises themselves, but wrap them in another Promise whose resolved result will in turn be tapped.
