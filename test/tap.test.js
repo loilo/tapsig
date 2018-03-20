@@ -21,6 +21,16 @@ test('taps classes', () => {
   expect(isTapped(tap(class Foo {}))).toBe(true)
 })
 
+test('does not tap promises', () => {
+  expect(isTapped(tap(Promise.resolve()))).toBe(false)
+})
+
+test('taps promise results', () => {
+  return tap(Promise.resolve({})).then(result => {
+    expect(isTapped(result)).toBe(true)
+  })
+})
+
 test('taps idempotently', () => {
   const tapped = tap({})
   expect(tap(tapped)).toBe(tapped)

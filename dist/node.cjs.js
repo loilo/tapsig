@@ -14,6 +14,7 @@ const log = debug('tapsig');
 var log$1 = (_, ...args) => log(...args)
 
 const TARGET = Symbol('Proxy target');
+const PROMISE_MARKER = Symbol('Promise marker');
 const ALL = Symbol('Catch all');
 const MISSING = Symbol('Catch missing');
 
@@ -23,7 +24,7 @@ const MISSING = Symbol('Catch missing');
  * @return {boolean}     Whether the value is tappable
  */
 function isTappable (value) {
-  return (typeof value === 'object' || typeof value === 'function') && value !== null
+  return (typeof value === 'object' || typeof value === 'function') && value !== null && !(value instanceof Promise)
 }
 
 /**
@@ -52,6 +53,14 @@ function getInjectedProperty (target, name, injectObj) {
  * @return {any}              The tapped object or its wrapping Proxy
  */
 function tapObject (source, inject, context, verbose) {
+  // Promises are a very special snowflake
+  if (source instanceof Promise) {
+    if (isTapped(source)) return source
+
+    source[PROMISE_MARKER] = true;
+    return source.then(result => tapObject(result, inject, context, verbose))
+  }
+
   // If target can't be or is already tapped, act as an identity function
   if (!isTappable(source) || Reflect.has(source, TARGET)) {
     return source
@@ -78,6 +87,13 @@ function tapObject (source, inject, context, verbose) {
       const injectObj = (typeof inject === 'function'
         ? inject(target)
         : inject) || Object.create(null);
+
+      // Source is a function and there's no .toString() method
+      if (typeof source === 'function' && (injectObj === null || !('toString' in injectObj))) {
+        injectObj.toString = function toString () {
+          return String(untap(this))
+        };
+      }
 
       // Check if property is shadowed by injection
       const hasInjected = injectObj instanceof Object
@@ -155,7 +171,8 @@ function untap (proxy) {
  * @return {boolean}     Whether the value is tapped
  */
 function isTapped (value) {
-  return isTappable(value) && TARGET in value
+  return (isTappable(value) && TARGET in value) ||
+    (value instanceof Promise && PROMISE_MARKER in value)
 }
 
 exports.ALL = ALL;

@@ -210,6 +210,10 @@ $.ajax // "no such property 'ajax'", returned by the ALL method
 ### Checking if an Object is Tapped
 You can check if an object is tapped by running `tapsig.isTapped(object)`.
 
+### Tap Promises
+There are [edge cases](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Called_on_incompatible_type) where wrapping an object in a Proxy does not work. Promises are one of those.
+Therefore, `tapsig` will not tap Promises themselves, but wrap them in another Promise whose resolved result will in turn be tapped.
+
 ### Debugging
 The Node.js version of Tapsig uses the [debug](https://npmjs.com/package/debug) utility to print logs.
 
