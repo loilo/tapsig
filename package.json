@@ -54,6 +54,9 @@
   "engines": {
     "node": ">=6.5.0"
   },
+  "jest": {
+    "testURL": "http://localhost"
+  },
   "standard": {
     "env": [
       "jest"
