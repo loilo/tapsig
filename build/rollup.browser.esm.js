@@ -1,5 +1,5 @@
 import alias from 'rollup-plugin-alias'
-import uglify from 'rollup-plugin-uglify'
+import { terser } from 'rollup-plugin-terser'
 
 export default {
   input: 'src/index.js',
@@ -11,6 +11,6 @@ export default {
     alias({
       '@debugger': './log.browser.js'
     }),
-    uglify()
+    terser()
   ]
 }

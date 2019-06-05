@@ -11,7 +11,7 @@ const log = debug('tapsig');
 /**
  * Debugging log for Node.js
  */
-var log$1 = (_, ...args) => log(...args)
+var log$1 = (_, ...args) => log(...args);
 
 const TARGET = Symbol('Proxy target');
 const PROMISE_MARKER = Symbol('Promise marker');
@@ -201,7 +201,7 @@ function isTapped (value) {
 
 exports.ALL = ALL;
 exports.MISSING = MISSING;
+exports.isTapped = isTapped;
+exports.mask = mask;
 exports.tap = tap;
 exports.untap = untap;
-exports.mask = mask;
-exports.isTapped = isTapped;
