@@ -1,7 +1,7 @@
 # Tapsig
 
 [![JavaScript Style Guide](https://badgen.net/badge/code%20style/standard/green)](https://standardjs.com)
-![Tests](https://badgen.net/github/checks/loilo/tapsig/master)
+[![Tests](https://badgen.net/github/checks/loilo/tapsig/master)](https://github.com/loilo/tapsig/actions)
 [![npm](https://badgen.net/npm/v/tapsig)](https://npmjs.com/package/tapsig)
 
 ![Tapsig](tapsig.png)
