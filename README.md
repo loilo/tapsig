@@ -1,9 +1,8 @@
 # Tapsig
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Travis](https://img.shields.io/travis/Loilo/tapsig.svg?label=unix&logo=travis)](https://travis-ci.org/Loilo/tapsig)
-[![AppVeyor](https://img.shields.io/appveyor/ci/Loilo/tapsig.svg?label=windows&logo=appveyor)](https://ci.appveyor.com/project/Loilo/tapsig)
-[![npm](https://img.shields.io/npm/v/tapsig.svg)](https://npmjs.com/package/tapsig)
+[![JavaScript Style Guide](https://badgen.net/badge/code%20style/standard/green)](https://standardjs.com)
+[![Tests](https://badgen.net/github/checks/loilo/tapsig/master)
+[![npm](https://badgen.net/npm/v/tapsig)](https://npmjs.com/package/tapsig)
 
 ![Tapsig](tapsig.png)
 
